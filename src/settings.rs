@@ -12,10 +12,12 @@ use asr::settings::Gui;
 
 #[derive(Gui)]
 pub struct Settings {
-    run_start: Title,
+    run_settings: Title,
     #[default = true]
     /// Automatic Start on New Game
     pub start: bool,
+    /// Automatic Reset of Timer
+    pub reset_timer: bool,
 
     // Split on Missiles, Super Missiles, and Power Bombs
     ammo_pickups: Title,
@@ -24,8 +26,9 @@ pub struct Settings {
     pub first_missile: bool,
     /// Split on each Missile upgrade
     pub all_missiles: bool,
-    /// Split on specific Missile Pack locations
-    pub specific_missiles: bool,
+
+    // Split on specific Missile Pack locations
+    specific_missiles: Title,
     /// Split on Crateria Missile Pack locations
     pub crateria_missiles: bool,
     /// Split on picking up the Missile Pack located at the bottom left of the West Ocean
@@ -132,8 +135,9 @@ pub struct Settings {
     pub first_super: bool,
     /// Split on each Super Missile upgrade
     pub all_supers: bool,
-    /// Split on specific Super Missile Pack locations
-    pub specific_supers: bool,
+
+    // Split on specific Super Missile Pack locations
+    specific_supers: Title,
     /// Split on picking up the Super Missile Pack in the Crateria Super Room
     pub climb_supers: bool,
     /// Split on picking up the Super Missile Pack in the Spore Spawn Super Room (NOTE: SSTRA splits when the dialogue box disappears, not on touch. Use Spore Spawn RTA Finish for SSTRA runs.)
@@ -158,8 +162,9 @@ pub struct Settings {
     pub first_power_bomb: bool,
     /// Split on each Power Bomb upgrade
     pub all_power_bombs: bool,
-    /// Split on specific Power Bomb Pack locations
-    pub specific_bombs: bool,
+
+    // Split on specific Power Bomb Pack locations
+    specific_bombs: Title,
     /// Split on picking up the Power Bomb Pack in the Crateria Power Bomb Room
     pub landing_site_bombs: bool,
     /// Split on picking up the Power Bomb Pack in the Etacoon Room section of Green Brinstar Main Shaft
@@ -182,14 +187,14 @@ pub struct Settings {
     pub right_sand_pit_bombs: bool,
 
     // Split on Varia and Gravity pickups
-    pub suit_upgrades: Title,
+    suit_upgrades: Title,
     /// Split on picking up the Varia Suit
     pub varia_suit: bool,
     /// Split on picking up the Gravity Suit
     pub grav_suit: bool,
 
     // Split on beam upgrades
-    pub beam_upgrades: Title,
+    beam_upgrades: Title,
     /// Split on picking up the Charge Beam
     pub charge_beam: bool,
     /// Split on picking up the Spazer
@@ -216,8 +221,9 @@ pub struct Settings {
     pub first_e_tank: bool,
     /// Split on picking up each Energy Tank
     pub all_e_tanks: bool,
-    /// Split on specific Energy Tank locations
-    pub specific_e_tanks: bool,
+
+    // Split on specific Energy Tank locations
+    specific_e_tanks: Title,
     /// Split on picking up the Energy Tank in the Gauntlet Energy Tank Room
     pub gauntlet_e_tank: bool,
     /// Split on picking up the Energy Tank in the Terminator Room
@@ -248,8 +254,9 @@ pub struct Settings {
     pub botwoon_e_tank: bool,
     /// Split on picking up each Reserve Tank
     pub reserve_tanks: bool,
-    /// Split on specific Reserve Tank locations
-    pub specific_r_tanks: bool,
+
+    // Split on specific Reserve Tank locations
+    specific_r_tanks: Title,
     /// Split on picking up the Reserve Tank in the Brinstar Reserve Tank Room
     pub brinstar_reserve: bool,
     /// Split on picking up the Reserve Tank in the Norfair Reserve Tank Room
@@ -274,8 +281,8 @@ pub struct Settings {
     /// Split on picking up the X-Ray Scope
     pub xray: bool,
 
-    /// Split on transitions between areas
-    pub area_transitions: bool,
+    // Split on transitions between areas
+    area_transitions: Title,
     /// Split on entering miniboss rooms (except Bomb Torizo)
     pub mini_boss_rooms: bool,
     /// Split on entering major boss rooms

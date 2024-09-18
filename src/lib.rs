@@ -1,3 +1,5 @@
+#![feature(type_alias_impl_trait, const_async_blocks)]
+
 use asr::{
     future::next_tick,
     settings::Gui,
@@ -9,7 +11,7 @@ mod settings;
 use settings::Settings;
 use std::collections::HashMap;
 
-asr::async_main!(stable);
+asr::async_main!(nightly);
 
 async fn main() {
     let room_id_enum = HashMap::from([
@@ -158,7 +160,7 @@ async fn main() {
         ("ceresRidley", 0xE0B5),
     ]);
 
-    let map_in_use_enum = HashMap::from([
+    let _map_in_use_enum = HashMap::from([
         ("crateria", 0x0),
         ("brinstar", 0x1),
         ("norfair", 0x2),
@@ -230,7 +232,7 @@ async fn main() {
 
     let mut picked_up_spore_spawn_super = false;
     let mut picked_up_hundredth_missile = false;
-    let frame_rate = 60.0;
+    let _frame_rate = 60.0;
 
     // TODO: Set up some general state and settings.
     // let mut splits = HashSet::<String>::new();
@@ -673,8 +675,12 @@ async fn main() {
 
                     match timer::state() {
                         TimerState::NotRunning => {
+                            if settings.reset_timer && room_id.old != 0 && room_id.current == 0 {
+                                timer::reset();
+                            }
+
                             // Normal Start
-                            if game_state.old == 2 && game_state.current == 0x1F {
+                            if settings.start && game_state.old == 2 && game_state.current == 0x1F {
                                 // splits = HashSet::<String>::new();
                                 //
                                 picked_up_spore_spawn_super = false;

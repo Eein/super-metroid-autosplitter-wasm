@@ -1,6 +1,6 @@
 # super-metroid-autosplitter-wasm
 
-An auto splitter for Bsnes.
+An auto splitter for Super Metroid on bsnes v115 (for now?).
 
 ## Compilation
 
