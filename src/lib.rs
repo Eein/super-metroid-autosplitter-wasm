@@ -292,335 +292,186 @@ async fn main() {
                 loop {
                     settings.update();
 
-                    let room_id_value = match process.read(main_module_base + 0x079B as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let room_id_value = process.read(main_module_base + 0x079B as u32).ok();
                     let room_id = room_id_watcher.update(room_id_value).unwrap();
 
-                    let game_state_value = match process.read(main_module_base + 0x0998 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let game_state_value = process.read(main_module_base + 0x0998 as u32).ok();
                     let game_state = game_state_watcher.update(game_state_value).unwrap();
 
-                    let map_in_use_value = match process.read(main_module_base + 0x079F as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let map_in_use_value = process.read(main_module_base + 0x079F as u32).ok();
                     let map_in_use = map_in_use_watcher.update(map_in_use_value).unwrap();
 
                     let unlocked_equips_2_value =
-                        match process.read(main_module_base + 0x09A4 as u32) {
-                            Ok(val) => Some(val),
-                            Err(_e) => None,
-                        };
+                        process.read(main_module_base + 0x09A4 as u32).ok();
                     let unlocked_equips_2 = unlocked_equips_2_watcher
                         .update(unlocked_equips_2_value)
                         .unwrap();
 
-                    let unlocked_equips_value = match process.read(main_module_base + 0x09A5 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let unlocked_equips_value = process.read(main_module_base + 0x09A5 as u32).ok();
                     let unlocked_equips = unlocked_equips_watcher
                         .update(unlocked_equips_value)
                         .unwrap();
 
-                    let unlocked_beams_value = match process.read(main_module_base + 0x09A8 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let unlocked_beams_value = process.read(main_module_base + 0x09A8 as u32).ok();
                     let unlocked_beams =
                         unlocked_beams_watcher.update(unlocked_beams_value).unwrap();
 
-                    let unlocked_charge_value = match process.read(main_module_base + 0x09A9 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let unlocked_charge_value = process.read(main_module_base + 0x09A9 as u32).ok();
                     let unlocked_charge = unlocked_charge_watcher
                         .update(unlocked_charge_value)
                         .unwrap();
 
-                    let max_energy_value = match process.read(main_module_base + 0x09C4 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let max_energy_value = process.read(main_module_base + 0x09C4 as u32).ok();
                     let max_energy = max_energy_watcher.update(max_energy_value).unwrap();
 
-                    let max_missiles_value = match process.read(main_module_base + 0x09C8 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let max_missiles_value = process.read(main_module_base + 0x09C8 as u32).ok();
                     let max_missiles = max_missiles_watcher.update(max_missiles_value).unwrap();
 
-                    let max_supers_value = match process.read(main_module_base + 0x09CC as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let max_supers_value = process.read(main_module_base + 0x09CC as u32).ok();
                     let max_supers = max_supers_watcher.update(max_supers_value).unwrap();
 
-                    let max_power_bombs_value = match process.read(main_module_base + 0x09D0 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let max_power_bombs_value = process.read(main_module_base + 0x09D0 as u32).ok();
                     let max_power_bombs = max_power_bombs_watcher
                         .update(max_power_bombs_value)
                         .unwrap();
 
-                    let max_reserve_value = match process.read(main_module_base + 0x09D4 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let max_reserve_value = process.read(main_module_base + 0x09D4 as u32).ok();
                     let max_reserve = max_reserve_watcher.update(max_reserve_value).unwrap();
 
-                    let igt_frames_value = match process.read(main_module_base + 0x09DA as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let igt_frames_value = process.read(main_module_base + 0x09DA as u32).ok();
                     let igt_frames = igt_frames_watcher.update(igt_frames_value).unwrap();
 
-                    let igt_seconds_value = match process.read(main_module_base + 0x09DC as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let igt_seconds_value = process.read(main_module_base + 0x09DC as u32).ok();
                     let igt_seconds = igt_seconds_watcher.update(igt_seconds_value).unwrap();
 
-                    let igt_minutes_value = match process.read(main_module_base + 0x09DE as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let igt_minutes_value = process.read(main_module_base + 0x09DE as u32).ok();
                     let igt_minutes = igt_minutes_watcher.update(igt_minutes_value).unwrap();
 
-                    let igt_hours_value = match process.read(main_module_base + 0x09E0 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let igt_hours_value = process.read(main_module_base + 0x09E0 as u32).ok();
                     let igt_hours = igt_hours_watcher.update(igt_hours_value).unwrap();
 
-                    let player_state_value = match process.read(main_module_base + 0x0A28 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let player_state_value = process.read(main_module_base + 0x0A28 as u32).ok();
                     let player_state = player_state_watcher.update(player_state_value).unwrap();
 
-                    let enemy_hp_value = match process.read(main_module_base + 0x0F8C as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let enemy_hp_value = process.read(main_module_base + 0x0F8C as u32).ok();
                     let enemy_hp = enemy_hp_watcher.update(enemy_hp_value).unwrap();
 
-                    let ship_ai_value = match process.read(main_module_base + 0x0FB2 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let ship_ai_value = process.read(main_module_base + 0x0FB2 as u32).ok();
                     let ship_ai = ship_ai_watcher.update(ship_ai_value).unwrap();
 
-                    let mother_brain_hp_value = match process.read(main_module_base + 0x0FCC as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let mother_brain_hp_value = process.read(main_module_base + 0x0FCC as u32).ok();
                     let mother_brain_hp = mother_brain_hp_watcher
                         .update(mother_brain_hp_value)
                         .unwrap();
 
-                    let event_flags_value = match process.read(main_module_base + 0x0D821 as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let event_flags_value = process.read(main_module_base + 0x0D821 as u32).ok();
                     let event_flags = event_flags_watcher.update(event_flags_value).unwrap();
 
-                    let crateria_bosses_value = match process.read(main_module_base + 0xD828 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let crateria_bosses_value = process.read(main_module_base + 0xD828 as u32).ok();
                     let crateria_bosses = crateria_bosses_watcher
                         .update(crateria_bosses_value)
                         .unwrap();
 
-                    let brinstar_bosses_value = match process.read(main_module_base + 0xD829 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let brinstar_bosses_value = process.read(main_module_base + 0xD829 as u32).ok();
                     let brinstar_bosses = brinstar_bosses_watcher
                         .update(brinstar_bosses_value)
                         .unwrap();
 
-                    let norfair_bosses_value = match process.read(main_module_base + 0xD82A as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let norfair_bosses_value = process.read(main_module_base + 0xD82A as u32).ok();
                     let norfair_bosses =
                         norfair_bosses_watcher.update(norfair_bosses_value).unwrap();
 
                     let wrecked_ship_bosses_value =
-                        match process.read(main_module_base + 0xD82B as u32) {
-                            Ok(val) => Some(val),
-                            Err(_e) => None,
-                        };
+                        process.read(main_module_base + 0xD82B as u32).ok();
                     let wrecked_ship_bosses = wrecked_ship_bosses_watcher
                         .update(wrecked_ship_bosses_value)
                         .unwrap();
 
-                    let maridia_bosses_value = match process.read(main_module_base + 0xD82C as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let maridia_bosses_value = process.read(main_module_base + 0xD82C as u32).ok();
                     let maridia_bosses =
                         maridia_bosses_watcher.update(maridia_bosses_value).unwrap();
 
-                    let tourian_bosses_value = match process.read(main_module_base + 0xD82D as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let tourian_bosses_value = process.read(main_module_base + 0xD82D as u32).ok();
                     let tourian_bosses =
                         tourian_bosses_watcher.update(tourian_bosses_value).unwrap();
 
-                    let ceres_bosses_value = match process.read(main_module_base + 0xD82E as u32) {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let ceres_bosses_value = process.read(main_module_base + 0xD82E as u32).ok();
                     let ceres_bosses = ceres_bosses_watcher.update(ceres_bosses_value).unwrap();
 
-                    let crateria_items_value = match process.read(main_module_base + 0xD870 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let crateria_items_value = process.read(main_module_base + 0xD870 as u32).ok();
                     let crateria_items =
                         crateria_items_watcher.update(crateria_items_value).unwrap();
 
-                    let brinteria_items_value = match process.read(main_module_base + 0xD871 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let brinteria_items_value = process.read(main_module_base + 0xD871 as u32).ok();
                     let brinteria_items = brinteria_items_watcher
                         .update(brinteria_items_value)
                         .unwrap();
 
                     let brinstar_items_2_value =
-                        match process.read(main_module_base + 0xD872 as u32) {
-                            Ok(val) => Some(val),
-                            Err(_e) => None,
-                        };
+                        process.read(main_module_base + 0xD872 as u32).ok();
                     let brinstar_items_2 = brinstar_items_2_watcher
                         .update(brinstar_items_2_value)
                         .unwrap();
 
                     let brinstar_items_3_value =
-                        match process.read(main_module_base + 0xD873 as u32) {
-                            Ok(val) => Some(val),
-                            Err(_e) => None,
-                        };
+                        process.read(main_module_base + 0xD873 as u32).ok();
                     let brinstar_items_3 = brinstar_items_3_watcher
                         .update(brinstar_items_3_value)
                         .unwrap();
 
                     let brinstar_items_4_value =
-                        match process.read(main_module_base + 0xD874 as u32) {
-                            Ok(val) => Some(val),
-                            Err(_e) => None,
-                        };
+                        process.read(main_module_base + 0xD874 as u32).ok();
                     let brinstar_items_4 = brinstar_items_4_watcher
                         .update(brinstar_items_4_value)
                         .unwrap();
 
                     let brinstar_items_5_value =
-                        match process.read(main_module_base + 0xD875 as u32) {
-                            Ok(val) => Some(val),
-                            Err(_e) => None,
-                        };
+                        process.read(main_module_base + 0xD875 as u32).ok();
                     let brinstar_items_5 = brinstar_items_5_watcher
                         .update(brinstar_items_5_value)
                         .unwrap();
 
-                    let norfair_items_1_value = match process.read(main_module_base + 0xD876 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let norfair_items_1_value = process.read(main_module_base + 0xD876 as u32).ok();
                     let norfair_items_1 = norfair_items_1_watcher
                         .update(norfair_items_1_value)
                         .unwrap();
 
-                    let norfair_items_2_value = match process.read(main_module_base + 0xD877 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let norfair_items_2_value = process.read(main_module_base + 0xD877 as u32).ok();
                     let norfair_items_2 = norfair_items_2_watcher
                         .update(norfair_items_2_value)
                         .unwrap();
 
-                    let norfair_items_3_value = match process.read(main_module_base + 0xD878 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let norfair_items_3_value = process.read(main_module_base + 0xD878 as u32).ok();
                     let norfair_items_3 = norfair_items_3_watcher
                         .update(norfair_items_3_value)
                         .unwrap();
 
-                    let norfair_items_4_value = match process.read(main_module_base + 0xD879 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let norfair_items_4_value = process.read(main_module_base + 0xD879 as u32).ok();
                     let norfair_items_4 = norfair_items_4_watcher
                         .update(norfair_items_4_value)
                         .unwrap();
 
-                    let norfair_items_5_value = match process.read(main_module_base + 0xD87A as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let norfair_items_5_value = process.read(main_module_base + 0xD87A as u32).ok();
                     let norfair_items_5 = norfair_items_5_watcher
                         .update(norfair_items_5_value)
                         .unwrap();
                     let wrecked_ship_items_value =
-                        match process.read(main_module_base + 0xD880 as u32) {
-                            Ok(val) => Some(val),
-                            Err(_e) => None,
-                        };
+                        process.read(main_module_base + 0xD880 as u32).ok();
                     let wrecked_ship_items = wrecked_ship_items_watcher
                         .update(wrecked_ship_items_value)
                         .unwrap();
 
-                    let maridia_items_1_value = match process.read(main_module_base + 0xD881 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let maridia_items_1_value = process.read(main_module_base + 0xD881 as u32).ok();
                     let maridia_items_1 = maridia_items_1_watcher
                         .update(maridia_items_1_value)
                         .unwrap();
 
-                    let maridia_items_2_value = match process.read(main_module_base + 0xD882 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let maridia_items_2_value = process.read(main_module_base + 0xD882 as u32).ok();
                     let maridia_items_2 = maridia_items_2_watcher
                         .update(maridia_items_2_value)
                         .unwrap();
 
-                    let maridia_items_3_value = match process.read(main_module_base + 0xD883 as u32)
-                    {
-                        Ok(val) => Some(val),
-                        Err(_e) => None,
-                    };
+                    let maridia_items_3_value = process.read(main_module_base + 0xD883 as u32).ok();
                     let maridia_items_3 = maridia_items_3_watcher
                         .update(maridia_items_3_value)
                         .unwrap();
