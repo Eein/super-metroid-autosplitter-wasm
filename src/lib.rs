@@ -531,7 +531,7 @@ async fn main() {
                             }
 
                             // Normal Start
-                            if settings.start && game_state.old == 2 && game_state.current == 0x1F {
+                            if settings.start && game_state.old == 2 && game_state.current == 30 {
                                 // splits = HashSet::<String>::new();
                                 //
                                 // picked_up_spore_spawn_super = false;
