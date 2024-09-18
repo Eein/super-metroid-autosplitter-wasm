@@ -1,5 +1,3 @@
-#![feature(type_alias_impl_trait, const_async_blocks)]
-
 use asr::{
     future::next_tick,
     settings::Gui,
@@ -281,8 +279,6 @@ async fn main() {
     let mut maridia_items_1_watcher = Watcher::<u8>::new();
     let mut maridia_items_2_watcher = Watcher::<u8>::new();
     let mut maridia_items_3_watcher = Watcher::<u8>::new();
-
-    asr::print_message("Hello, World!");
 
     loop {
         let process = Process::wait_attach("bsnes.exe").await;
@@ -679,7 +675,6 @@ async fn main() {
                         TimerState::NotRunning => {
                             // Normal Start
                             if game_state.old == 2 && game_state.current == 0x1F {
-                                asr::print_message("Clearing Splits and Starting");
                                 // splits = HashSet::<String>::new();
                                 //
                                 picked_up_spore_spawn_super = false;
