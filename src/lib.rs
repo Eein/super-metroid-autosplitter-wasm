@@ -284,7 +284,7 @@ async fn main() {
 
     loop {
         let process = Process::wait_attach("bsnes.exe").await;
-        let main_module_base = 0xB16D7C; // bsnes v115
+        let main_module_base = 0x43A0060; // bsnes-plus 0.5 (windows on proton)
 
         process
             .until_closes(async {
