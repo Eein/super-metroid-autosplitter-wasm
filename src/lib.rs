@@ -1013,7 +1013,7 @@ async fn main() {
                             let varia = settings.varia_suit
                                 && room_id.current == *room_id_enum.get("varia").unwrap()
                                 && (unlocked_equips_2.old
-                                    & unlock_flag_enum.get("varia_suit").unwrap())
+                                    & unlock_flag_enum.get("variaSuit").unwrap())
                                     == 0
                                 && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("variaSuit").unwrap())
@@ -1021,23 +1021,25 @@ async fn main() {
                             let spring_ball = settings.spring_ball
                                 && room_id.current == *room_id_enum.get("springBall").unwrap()
                                 && (unlocked_equips_2.old
-                                    & unlock_flag_enum.get("spring_ball").unwrap())
+                                    & unlock_flag_enum.get("springBall").unwrap())
                                     == 0
                                 && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("springBall").unwrap())
                                     > 0;
+
                             let morph_ball = settings.morph_ball
                                 && room_id.current == *room_id_enum.get("morphBall").unwrap()
                                 && (unlocked_equips_2.old
-                                    & unlock_flag_enum.get("morph_ball").unwrap())
+                                    & unlock_flag_enum.get("morphBall").unwrap())
                                     == 0
                                 && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("morphBall").unwrap())
                                     > 0;
+
                             let screw_attack = settings.screw_attack
                                 && room_id.current == *room_id_enum.get("screwAttack").unwrap()
                                 && (unlocked_equips_2.old
-                                    & unlock_flag_enum.get("screw_attack").unwrap())
+                                    & unlock_flag_enum.get("screwAttack").unwrap())
                                     == 0
                                 && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("screwAttack").unwrap())
@@ -1045,14 +1047,14 @@ async fn main() {
                             let grav_suit = settings.grav_suit
                                 && room_id.current == *room_id_enum.get("gravity").unwrap()
                                 && (unlocked_equips_2.old
-                                    & unlock_flag_enum.get("grav_suit").unwrap())
+                                    & unlock_flag_enum.get("gravSuit").unwrap())
                                     == 0
                                 && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("gravSuit").unwrap())
                                     > 0;
                             let hi_jump = settings.hi_jump
                                 && room_id.current == *room_id_enum.get("hiJump").unwrap()
-                                && (unlocked_equips.old & unlock_flag_enum.get("hi_jump").unwrap())
+                                && (unlocked_equips.old & unlock_flag_enum.get("hiJump").unwrap())
                                     == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("hiJump").unwrap())
@@ -1060,7 +1062,7 @@ async fn main() {
                             let space_jump = settings.space_jump
                                 && room_id.current == *room_id_enum.get("spaceJump").unwrap()
                                 && (unlocked_equips.old
-                                    & unlock_flag_enum.get("space_jump").unwrap())
+                                    & unlock_flag_enum.get("spaceJump").unwrap())
                                     == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("spaceJump").unwrap())
@@ -1075,7 +1077,7 @@ async fn main() {
                             let speed_booster = settings.speed_booster
                                 && room_id.current == *room_id_enum.get("speedBooster").unwrap()
                                 && (unlocked_equips.old
-                                    & unlock_flag_enum.get("speed_booster").unwrap())
+                                    & unlock_flag_enum.get("speedBooster").unwrap())
                                     == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("speedBooster").unwrap())
