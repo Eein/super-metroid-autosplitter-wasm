@@ -10,12 +10,11 @@ use asr::{
 mod settings;
 use settings::Settings;
 use std::collections::HashMap;
-use std::collections::HashSet;
 
 asr::async_main!(stable);
 
 async fn main() {
-    let mut room_id_enum = HashMap::from([
+    let room_id_enum = HashMap::from([
         ("landingSite", 0x91F8),
         ("crateriaPowerBombRoom", 0x93AA),
         ("westOcean", 0x93FE),
@@ -161,7 +160,7 @@ async fn main() {
         ("ceresRidley", 0xE0B5),
     ]);
 
-    let mut map_in_use_enum = HashMap::from([
+    let map_in_use_enum = HashMap::from([
         ("crateria", 0x0),
         ("brinstar", 0x1),
         ("norfair", 0x2),
@@ -171,7 +170,7 @@ async fn main() {
         ("ceres", 0x6),
     ]);
 
-    let mut game_state_enum = HashMap::from([
+    let game_state_enum = HashMap::from([
         ("normalGameplay", 0x8),
         ("doorTransition", 0xB),
         ("startOfCeresCutscene", 0x20),
@@ -179,7 +178,7 @@ async fn main() {
         ("endCutscene", 0x27),
     ]);
 
-    let mut unlock_flag_enum = HashMap::from([
+    let unlock_flag_enum = HashMap::from([
         // First item byte
         ("variaSuit", 0x1),
         ("springBall", 0x2),
@@ -202,15 +201,15 @@ async fn main() {
         ("chargeBeam", 0x10),
     ]);
 
-    let mut mother_brain_max_hp_enum = HashMap::from([
+    let mother_brain_max_hp_enum = HashMap::from([
         ("phase1", 0xBB8),  // 3000
         ("phase2", 0x4650), // 18000
         ("phase3", 0x8CA0), // 36000
     ]);
 
-    let mut event_flag_enum = HashMap::from([("zebesAblaze", 0x40), ("tubeBroken", 0x8)]);
+    let event_flag_enum = HashMap::from([("zebesAblaze", 0x40), ("tubeBroken", 0x8)]);
 
-    let mut boss_flag_enum = HashMap::from([
+    let boss_flag_enum = HashMap::from([
         // Crateria
         ("bombTorizo", 0x4),
         // Brinstar
@@ -233,10 +232,10 @@ async fn main() {
 
     let mut picked_up_spore_spawn_super = false;
     let mut picked_up_hundredth_missile = false;
-    let mut frame_rate = 60.0;
+    let frame_rate = 60.0;
 
     // TODO: Set up some general state and settings.
-    let mut splits = HashSet::<String>::new();
+    // let mut splits = HashSet::<String>::new();
     let mut settings = Settings::register();
 
     let mut room_id_watcher = Watcher::<u16>::new();
@@ -632,7 +631,7 @@ async fn main() {
                     timer::set_variable_int("room_id", room_id.current as u8);
                     timer::set_variable_int("map_in_use", map_in_use.current as u8);
                     timer::set_variable_int("game_state", game_state.current as u8);
-                    timer::set_variable_int("unlocked_equips2", unlocked_equips_2.current as u8);
+                    timer::set_variable_int("unlocked_equips_2", unlocked_equips_2.current as u8);
                     timer::set_variable_int("unlocked_equips", unlocked_equips.current as u8);
                     timer::set_variable_int("unlocked_beams", unlocked_beams.current as u8);
                     timer::set_variable_int("unlocked_charge", unlocked_charge.current as u8);
@@ -662,18 +661,18 @@ async fn main() {
                     timer::set_variable_int("ceres_bosses", ceres_bosses.current as u8);
                     timer::set_variable_int("crateria_items", crateria_items.current as u8);
                     timer::set_variable_int("brinteria_items", brinteria_items.current as u8);
-                    timer::set_variable_int("brinstar_items2", brinstar_items_2.current as u8);
-                    timer::set_variable_int("brinstar_items3", brinstar_items_3.current as u8);
-                    timer::set_variable_int("brinstar_items4", brinstar_items_4.current as u8);
-                    timer::set_variable_int("brinstar_items5", brinstar_items_5.current as u8);
-                    timer::set_variable_int("norfair_items1", norfair_items_1.current as u8);
-                    timer::set_variable_int("norfair_items2", norfair_items_2.current as u8);
-                    timer::set_variable_int("norfair_items3", norfair_items_3.current as u8);
-                    timer::set_variable_int("norfair_items4", norfair_items_4.current as u8);
+                    timer::set_variable_int("brinstar_items_2", brinstar_items_2.current as u8);
+                    timer::set_variable_int("brinstar_items_3", brinstar_items_3.current as u8);
+                    timer::set_variable_int("brinstar_items_4", brinstar_items_4.current as u8);
+                    timer::set_variable_int("brinstar_items_5", brinstar_items_5.current as u8);
+                    timer::set_variable_int("norfair_items_1", norfair_items_1.current as u8);
+                    timer::set_variable_int("norfair_items_2", norfair_items_2.current as u8);
+                    timer::set_variable_int("norfair_items_3", norfair_items_3.current as u8);
+                    timer::set_variable_int("norfair_items_4", norfair_items_4.current as u8);
                     timer::set_variable_int("norfair_items5", norfair_items_5.current as u8);
                     timer::set_variable_int("wrecked_ship_items", wrecked_ship_items.current as u8);
-                    timer::set_variable_int("maridia_items1", maridia_items_1.current as u8);
-                    timer::set_variable_int("maridia_items2", maridia_items_2.current as u8);
+                    timer::set_variable_int("maridia_items_1", maridia_items_1.current as u8);
+                    timer::set_variable_int("maridia_items_2", maridia_items_2.current as u8);
                     timer::set_variable_int("maridia_items3", maridia_items_3.current as u8);
 
                     match timer::state() {
@@ -728,94 +727,94 @@ async fn main() {
                                 .green_brinstar_reserve_missiles
                                 && room_id.current
                                     == *room_id_enum.get("brinstarReserveRoom").unwrap()
-                                && (brinstar_items2.old + 8) == (brinstar_items2.current);
+                                && (brinstar_items_2.old + 8) == (brinstar_items_2.current);
                             let green_brinstar_extra_reserve_missiles = settings
                                 .green_brinstar_extra_reserve_missiles
                                 && room_id.current
                                     == *room_id_enum.get("brinstarReserveRoom").unwrap()
-                                && (brinstar_items2.old + 4) == (brinstar_items2.current);
+                                && (brinstar_items_2.old + 4) == (brinstar_items_2.current);
                             let big_pink_top_missiles = settings.big_pink_top_missiles
                                 && room_id.current == *room_id_enum.get("bigPink").unwrap()
-                                && (brinstar_items2.old + 32) == (brinstar_items2.current);
+                                && (brinstar_items_2.old + 32) == (brinstar_items_2.current);
                             let charge_missiles = settings.charge_missiles
                                 && room_id.current == *room_id_enum.get("bigPink").unwrap()
-                                && (brinstar_items2.old + 64) == (brinstar_items2.current);
+                                && (brinstar_items_2.old + 64) == (brinstar_items_2.current);
                             let green_hills_missiles = settings.green_hills_missiles
                                 && room_id.current == *room_id_enum.get("greenHills").unwrap()
-                                && (brinstar_items3.old + 2) == (brinstar_items3.current);
+                                && (brinstar_items_3.old + 2) == (brinstar_items_3.current);
                             let blue_brinstar_e_tank_missiles = settings
                                 .blue_brinstar_e_tank_missiles
                                 && room_id.current
                                     == *room_id_enum.get("blueBrinstarETankRoom").unwrap()
-                                && (brinstar_items3.old + 16) == (brinstar_items3.current);
+                                && (brinstar_items_3.old + 16) == (brinstar_items_3.current);
                             let alpha_missiles = settings.alpha_missiles
                                 && room_id.current
                                     == *room_id_enum.get("alphaMissileRoom").unwrap()
-                                && (brinstar_items4.old + 4) == (brinstar_items4.current);
+                                && (brinstar_items_4.old + 4) == (brinstar_items_4.current);
                             let billy_mays_missiles = settings.billy_mays_missiles
                                 && room_id.current == *room_id_enum.get("billyMays").unwrap()
-                                && (brinstar_items4.old + 16) == (brinstar_items4.current);
+                                && (brinstar_items_4.old + 16) == (brinstar_items_4.current);
                             let but_wait_theres_more_missiles = settings
                                 .but_wait_theres_more_missiles
                                 && room_id.current == *room_id_enum.get("billyMays").unwrap()
-                                && (brinstar_items4.old + 32) == (brinstar_items4.current);
+                                && (brinstar_items_4.old + 32) == (brinstar_items_4.current);
                             let red_brinstar_missiles = settings.red_brinstar_missiles
                                 && room_id.current
                                     == *room_id_enum.get("alphaPowerBombsRoom").unwrap()
-                                && (brinstar_items5.old + 2) == (brinstar_items5.current);
+                                && (brinstar_items_5.old + 2) == (brinstar_items_5.current);
                             let warehouse_missiles = settings.warehouse_missiles
                                 && room_id.current
                                     == *room_id_enum.get("warehouseKiHunters").unwrap()
-                                && (brinstar_items5.old + 16) == (brinstar_items5.current);
+                                && (brinstar_items_5.old + 16) == (brinstar_items_5.current);
                             let cathedral_missiles = settings.cathedral_missiles
                                 && room_id.current == *room_id_enum.get("cathedral").unwrap()
-                                && (norfair_items1.old + 2) == (norfair_items1.current);
+                                && (norfair_items_1.old + 2) == (norfair_items_1.current);
                             let crumble_shaft_missiles = settings.crumble_shaft_missiles
                                 && room_id.current == *room_id_enum.get("crumbleShaft").unwrap()
-                                && (norfair_items1.old + 8) == (norfair_items1.current);
+                                && (norfair_items_1.old + 8) == (norfair_items_1.current);
                             let crocomire_escape_missiles = settings.crocomire_escape_missiles
                                 && room_id.current == *room_id_enum.get("crocomireEscape").unwrap()
-                                && (norfair_items1.old + 64) == (norfair_items1.current);
+                                && (norfair_items_1.old + 64) == (norfair_items_1.current);
                             let hi_jump_missiles = settings.hi_jump_missiles
                                 && room_id.current == *room_id_enum.get("hiJumpShaft").unwrap()
-                                && (norfair_items1.old + 128) == (norfair_items1.current);
+                                && (norfair_items_1.old + 128) == (norfair_items_1.current);
                             let post_crocomire_missiles = settings.post_crocomire_missiles
                                 && room_id.current == *room_id_enum.get("cosineRoom").unwrap()
-                                && (norfair_items2.old + 4) == (norfair_items2.current);
+                                && (norfair_items_2.old + 4) == (norfair_items_2.current);
                             let grapple_missiles = settings.grapple_missiles
                                 && room_id.current == *room_id_enum.get("preGrapple").unwrap()
-                                && (norfair_items2.old + 8) == (norfair_items2.current);
+                                && (norfair_items_2.old + 8) == (norfair_items_2.current);
                             let norfair_reserve_missiles = settings.norfair_reserve_missiles
                                 && room_id.current
                                     == *room_id_enum.get("norfairReserveRoom").unwrap()
-                                && (norfair_items2.old + 64) == (norfair_items2.current);
+                                && (norfair_items_2.old + 64) == (norfair_items_2.current);
                             let green_bubbles_missiles = settings.green_bubbles_missiles
                                 && room_id.current
                                     == *room_id_enum.get("greenBubblesRoom").unwrap()
-                                && (norfair_items2.old + 128) == (norfair_items2.current);
+                                && (norfair_items_2.old + 128) == (norfair_items_2.current);
                             let bubble_mountain_missiles = settings.bubble_mountain_missiles
                                 && room_id.current == *room_id_enum.get("bubbleMountain").unwrap()
-                                && (norfair_items3.old + 1) == (norfair_items3.current);
+                                && (norfair_items_3.old + 1) == (norfair_items_3.current);
                             let speed_boost_missiles = settings.speed_boost_missiles
                                 && room_id.current == *room_id_enum.get("speedBoostHall").unwrap()
-                                && (norfair_items3.old + 2) == (norfair_items3.current);
+                                && (norfair_items_3.old + 2) == (norfair_items_3.current);
                             let wave_missiles = settings.wave_missiles
                                 && room_id.current == *room_id_enum.get("doubleChamber").unwrap()
-                                && (norfair_items3.old + 8) == (norfair_items3.current);
+                                && (norfair_items_3.old + 8) == (norfair_items_3.current);
                             let gold_torizo_missiles = settings.gold_torizo_missiles
                                 && room_id.current == *room_id_enum.get("goldenTorizo").unwrap()
-                                && (norfair_items3.old + 64) == (norfair_items3.current);
+                                && (norfair_items_3.old + 64) == (norfair_items_3.current);
                             let mickey_mouse_missiles = settings.mickey_mouse_missiles
                                 && room_id.current == *room_id_enum.get("mickeyMouse").unwrap()
-                                && (norfair_items4.old + 2) == (norfair_items4.current);
+                                && (norfair_items_4.old + 2) == (norfair_items_4.current);
                             let lower_norfair_spring_maze_missiles = settings
                                 .lower_norfair_spring_maze_missiles
                                 && room_id.current
                                     == *room_id_enum.get("lowerNorfairSpringMaze").unwrap()
-                                && (norfair_items4.old + 4) == (norfair_items4.current);
+                                && (norfair_items_4.old + 4) == (norfair_items_4.current);
                             let three_musketeers_missiles = settings.three_musketeers_missiles
                                 && room_id.current == *room_id_enum.get("threeMusketeers").unwrap()
-                                && (norfair_items4.old + 32) == (norfair_items4.current);
+                                && (norfair_items_4.old + 32) == (norfair_items_4.current);
                             let wrecked_ship_main_shaft_missiles = settings
                                 .wrecked_ship_main_shaft_missiles
                                 && room_id.current
@@ -830,28 +829,28 @@ async fn main() {
                                 && (wrecked_ship_items.old + 8) == (wrecked_ship_items.current);
                             let main_street_missiles = settings.main_street_missiles
                                 && room_id.current == *room_id_enum.get("mainStreet").unwrap()
-                                && (maridia_items1.old + 1) == (maridia_items1.current);
+                                && (maridia_items_1.old + 1) == (maridia_items_1.current);
                             let mama_turtle_missiles = settings.mama_turtle_missiles
                                 && room_id.current == *room_id_enum.get("mamaTurtle").unwrap()
-                                && (maridia_items1.old + 8) == (maridia_items1.current);
+                                && (maridia_items_1.old + 8) == (maridia_items_1.current);
                             let watering_hole_missiles = settings.watering_hole_missiles
                                 && room_id.current == *room_id_enum.get("wateringHole").unwrap()
-                                && (maridia_items1.old + 32) == (maridia_items1.current);
+                                && (maridia_items_1.old + 32) == (maridia_items_1.current);
                             let beach_missiles = settings.beach_missiles
                                 && room_id.current == *room_id_enum.get("beach").unwrap()
-                                && (maridia_items1.old + 64) == (maridia_items1.current);
+                                && (maridia_items_1.old + 64) == (maridia_items_1.current);
                             let left_sand_pit_missiles = settings.left_sand_pit_missiles
                                 && room_id.current == *room_id_enum.get("leftSandPit").unwrap()
-                                && (maridia_items2.old + 1) == (maridia_items2.current);
+                                && (maridia_items_2.old + 1) == (maridia_items_2.current);
                             let right_sand_pit_missiles = settings.right_sand_pit_missiles
                                 && room_id.current == *room_id_enum.get("rightSandPit").unwrap()
-                                && (maridia_items2.old + 4) == (maridia_items2.current);
+                                && (maridia_items_2.old + 4) == (maridia_items_2.current);
                             let aqueduct_missiles = settings.aqueduct_missiles
                                 && room_id.current == *room_id_enum.get("aqueduct").unwrap()
-                                && (maridia_items2.old + 16) == (maridia_items2.current);
+                                && (maridia_items_2.old + 16) == (maridia_items_2.current);
                             let pre_draygon_missiles = settings.pre_draygon_missiles
                                 && room_id.current == *room_id_enum.get("precious").unwrap()
-                                && (maridia_items2.old + 128) == (maridia_items2.current);
+                                && (maridia_items_2.old + 128) == (maridia_items_2.current);
                             let first_super = settings.first_super
                                 && max_supers.old == 0
                                 && max_supers.current == 5;
@@ -866,14 +865,14 @@ async fn main() {
                                 && (brinteria_items.old + 64) == (brinteria_items.current);
                             let early_supers = settings.early_supers
                                 && room_id.current == *room_id_enum.get("earlySupers").unwrap()
-                                && (brinstar_items2.old + 1) == (brinstar_items2.current);
+                                && (brinstar_items_2.old + 1) == (brinstar_items_2.current);
                             let etacoon_supers = settings.etacoon_supers
                                 && room_id.current
                                     == *room_id_enum.get("etacoonSuperRoom").unwrap()
-                                && (brinstar_items3.old + 128) == (brinstar_items3.current);
+                                && (brinstar_items_3.old + 128) == (brinstar_items_3.current);
                             let gold_torizo_supers = settings.gold_torizo_supers
                                 && room_id.current == *room_id_enum.get("goldenTorizo").unwrap()
-                                && (norfair_items3.old + 128) == (norfair_items3.current);
+                                && (norfair_items_3.old + 128) == (norfair_items_3.current);
                             let wrecked_ship_left_supers = settings.wrecked_ship_left_supers
                                 && room_id.current
                                     == *room_id_enum.get("wreckedShipLeftSuperRoom").unwrap()
@@ -884,13 +883,13 @@ async fn main() {
                                 && (wrecked_ship_items.old + 64) == (wrecked_ship_items.current);
                             let crab_supers = settings.crab_supers
                                 && room_id.current == *room_id_enum.get("mainStreet").unwrap()
-                                && (maridia_items1.old + 2) == (maridia_items1.current);
+                                && (maridia_items_1.old + 2) == (maridia_items_1.current);
                             let watering_hole_supers = settings.watering_hole_supers
                                 && room_id.current == *room_id_enum.get("wateringHole").unwrap()
-                                && (maridia_items1.old + 16) == (maridia_items1.current);
+                                && (maridia_items_1.old + 16) == (maridia_items_1.current);
                             let aqueduct_supers = settings.aqueduct_supers
                                 && room_id.current == *room_id_enum.get("aqueduct").unwrap()
-                                && (maridia_items2.old + 32) == (maridia_items2.current);
+                                && (maridia_items_2.old + 32) == (maridia_items_2.current);
                             let first_power_bomb = settings.first_power_bomb
                                 && max_power_bombs.old == 0
                                 && max_power_bombs.current == 5;
@@ -907,34 +906,34 @@ async fn main() {
                             let pink_brinstar_bombs = settings.pink_brinstar_bombs
                                 && room_id.current
                                     == *room_id_enum.get("pinkBrinstarPowerBombRoom").unwrap()
-                                && (brinstar_items3.old + 1) == (brinstar_items3.current);
+                                && (brinstar_items_3.old + 1) == (brinstar_items_3.current);
                             let blue_brinstar_bombs = settings.blue_brinstar_bombs
                                 && room_id.current == *room_id_enum.get("morphBall").unwrap()
-                                && (brinstar_items3.old + 8) == (brinstar_items3.current);
+                                && (brinstar_items_3.old + 8) == (brinstar_items_3.current);
                             let alpha_bombs = settings.alpha_bombs
                                 && room_id.current
                                     == *room_id_enum.get("alphaPowerBombsRoom").unwrap()
-                                && (brinstar_items5.old + 1) == (brinstar_items5.current);
+                                && (brinstar_items_5.old + 1) == (brinstar_items_5.current);
                             let beta_bombs = settings.beta_bombs
                                 && room_id.current
                                     == *room_id_enum.get("betaPowerBombRoom").unwrap()
-                                && (brinstar_items4.old + 128) == (brinstar_items4.current);
+                                && (brinstar_items_4.old + 128) == (brinstar_items_4.current);
                             let crocomire_bombs = settings.crocomire_bombs
                                 && room_id.current
                                     == *room_id_enum.get("postCrocomirePowerBombRoom").unwrap()
-                                && (norfair_items2.old + 2) == (norfair_items2.current);
+                                && (norfair_items_2.old + 2) == (norfair_items_2.current);
                             let lower_norfair_escape_bombs = settings.lower_norfair_escape_bombs
                                 && room_id.current
                                     == *room_id_enum
                                         .get("lowerNorfairEscapePowerBombRoom")
                                         .unwrap()
-                                && (norfair_items4.old + 8) == (norfair_items4.current);
+                                && (norfair_items_4.old + 8) == (norfair_items_4.current);
                             let shame_bombs = settings.shame_bombs
                                 && room_id.current == *room_id_enum.get("wasteland").unwrap()
-                                && (norfair_items4.old + 16) == (norfair_items4.current);
+                                && (norfair_items_4.old + 16) == (norfair_items_4.current);
                             let right_sand_pit_bombs = settings.right_sand_pit_bombs
                                 && room_id.current == *room_id_enum.get("rightSandPit").unwrap()
-                                && (maridia_items2.old + 8) == (maridia_items2.current);
+                                && (maridia_items_2.old + 8) == (maridia_items_2.current);
 
                             let pickup = first_missile
                                 || all_missiles
@@ -1012,79 +1011,97 @@ async fn main() {
                             // Item unlock section
                             let varia = settings.varia_suit
                                 && room_id.current == *room_id_enum.get("varia").unwrap()
-                                && (unlocked_equips2.old & varia_suit) == 0
-                                && (unlocked_equips2.current
+                                && (unlocked_equips_2.old
+                                    & unlock_flag_enum.get("varia_suit").unwrap())
+                                    == 0
+                                && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("variaSuit").unwrap())
                                     > 0;
-                            let springBall = settings.spring_ball
+                            let spring_ball = settings.spring_ball
                                 && room_id.current == *room_id_enum.get("springBall").unwrap()
-                                && (unlocked_equips2.old & spring_ball) == 0
-                                && (unlocked_equips2.current
+                                && (unlocked_equips_2.old
+                                    & unlock_flag_enum.get("spring_ball").unwrap())
+                                    == 0
+                                && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("springBall").unwrap())
                                     > 0;
-                            let morphBall = settings.morph_ball
+                            let morph_ball = settings.morph_ball
                                 && room_id.current == *room_id_enum.get("morphBall").unwrap()
-                                && (unlocked_equips2.old & morph_ball) == 0
-                                && (unlocked_equips2.current
+                                && (unlocked_equips_2.old
+                                    & unlock_flag_enum.get("morph_ball").unwrap())
+                                    == 0
+                                && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("morphBall").unwrap())
                                     > 0;
-                            let screwAttack = settings.screw_attack
+                            let screw_attack = settings.screw_attack
                                 && room_id.current == *room_id_enum.get("screwAttack").unwrap()
-                                && (unlocked_equips2.old & screw_attack) == 0
-                                && (unlocked_equips2.current
+                                && (unlocked_equips_2.old
+                                    & unlock_flag_enum.get("screw_attack").unwrap())
+                                    == 0
+                                && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("screwAttack").unwrap())
                                     > 0;
-                            let gravSuit = settings.grav_suit
+                            let grav_suit = settings.grav_suit
                                 && room_id.current == *room_id_enum.get("gravity").unwrap()
-                                && (unlocked_equips2.old & grav_suit) == 0
-                                && (unlocked_equips2.current
+                                && (unlocked_equips_2.old
+                                    & unlock_flag_enum.get("grav_suit").unwrap())
+                                    == 0
+                                && (unlocked_equips_2.current
                                     & unlock_flag_enum.get("gravSuit").unwrap())
                                     > 0;
-                            let hiJump = settings.hi_jump
+                            let hi_jump = settings.hi_jump
                                 && room_id.current == *room_id_enum.get("hiJump").unwrap()
-                                && (unlocked_equips.old & hi_jump) == 0
+                                && (unlocked_equips.old & unlock_flag_enum.get("hi_jump").unwrap())
+                                    == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("hiJump").unwrap())
                                     > 0;
-                            let spaceJump = settings.space_jump
+                            let space_jump = settings.space_jump
                                 && room_id.current == *room_id_enum.get("spaceJump").unwrap()
-                                && (unlocked_equips.old & space_jump) == 0
+                                && (unlocked_equips.old
+                                    & unlock_flag_enum.get("space_jump").unwrap())
+                                    == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("spaceJump").unwrap())
                                     > 0;
                             let bomb = settings.bomb
                                 && room_id.current == *room_id_enum.get("bombTorizo").unwrap()
-                                && (unlocked_equips.old & bomb) == 0
+                                && (unlocked_equips.old & unlock_flag_enum.get("bomb").unwrap())
+                                    == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("bomb").unwrap())
                                     > 0;
-                            let speedBooster = settings.speed_booster
+                            let speed_booster = settings.speed_booster
                                 && room_id.current == *room_id_enum.get("speedBooster").unwrap()
-                                && (unlocked_equips.old & speed_booster) == 0
+                                && (unlocked_equips.old
+                                    & unlock_flag_enum.get("speed_booster").unwrap())
+                                    == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("speedBooster").unwrap())
                                     > 0;
                             let grapple = settings.grapple
                                 && room_id.current == *room_id_enum.get("grapple").unwrap()
-                                && (unlocked_equips.old & grapple) == 0
+                                && (unlocked_equips.old & unlock_flag_enum.get("grapple").unwrap())
+                                    == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("grapple").unwrap())
                                     > 0;
                             let xray = settings.xray
                                 && room_id.current == *room_id_enum.get("xRay").unwrap()
-                                && (unlocked_equips.old & xray) == 0
+                                && (unlocked_equips.old & unlock_flag_enum.get("xray").unwrap())
+                                    == 0
                                 && (unlocked_equips.current
                                     & unlock_flag_enum.get("xray").unwrap())
                                     > 0;
                             let unlock = varia
-                                || springBall
-                                || morphBall
-                                || screwAttack
-                                || gravSuit
-                                || hiJump
-                                || spaceJump
+                                || spring_ball
+                                || morph_ball
+                                || screw_attack
+                                || grav_suit
+                                || hi_jump
+                                || space_jump
                                 || bomb
-                                || speedBooster
+                                || speed_booster
                                 || grapple
                                 || xray;
 
@@ -1127,129 +1144,129 @@ async fn main() {
                             let beam = wave || ice || spazer || plasma || charge_beam;
 
                             // E-tanks and reserve tanks
-                            let firstETank = settings.first_e_tank
+                            let first_e_tank = settings.first_e_tank
                                 && max_energy.old == 99
                                 && max_energy.current == 199;
-                            let allETanks = settings.all_e_tanks
+                            let all_e_tanks = settings.all_e_tanks
                                 && (max_energy.old + 100) == (max_energy.current);
-                            let gauntletETank = settings.gauntlet_e_tank
+                            let gauntlet_e_tank = settings.gauntlet_e_tank
                                 && room_id.current
                                     == *room_id_enum.get("gauntletETankRoom").unwrap()
                                 && (crateria_items.old + 32) == (crateria_items.current);
-                            let terminatorETank = settings.terminator_e_tank
+                            let terminator_e_tank = settings.terminator_e_tank
                                 && room_id.current == *room_id_enum.get("terminator").unwrap()
                                 && (brinteria_items.old + 1) == (brinteria_items.current);
-                            let ceilingETank = settings.ceiling_e_tank
+                            let ceiling_e_tank = settings.ceiling_e_tank
                                 && room_id.current
                                     == *room_id_enum.get("blueBrinstarETankRoom").unwrap()
-                                && (brinstar_items3.old + 32) == (brinstar_items3.current);
-                            let etecoonsETank = settings.etecoons_e_tank
+                                && (brinstar_items_3.old + 32) == (brinstar_items_3.current);
+                            let etecoons_e_tank = settings.etecoons_e_tank
                                 && room_id.current
                                     == *room_id_enum.get("etacoonETankRoom").unwrap()
-                                && (brinstar_items3.old + 64) == (brinstar_items3.current);
-                            let waterwayETank = settings.waterway_e_tank
+                                && (brinstar_items_3.old + 64) == (brinstar_items_3.current);
+                            let waterway_e_tank = settings.waterway_e_tank
                                 && room_id.current == *room_id_enum.get("waterway").unwrap()
-                                && (brinstar_items4.old + 2) == (brinstar_items4.current);
-                            let waveGateETank = settings.wave_gate_e_tank
+                                && (brinstar_items_4.old + 2) == (brinstar_items_4.current);
+                            let wave_gate_e_tank = settings.wave_gate_e_tank
                                 && room_id.current == *room_id_enum.get("hopperETankRoom").unwrap()
-                                && (brinstar_items4.old + 8) == (brinstar_items4.current);
-                            let kraidETank = settings.kraid_e_tank
+                                && (brinstar_items_4.old + 8) == (brinstar_items_4.current);
+                            let kraid_e_tank = settings.kraid_e_tank
                                 && room_id.current
                                     == *room_id_enum.get("warehouseETankRoom").unwrap()
-                                && (brinstar_items5.old + 8) == (brinstar_items5.current);
-                            let crocomireETank = settings.crocomire_e_tank
+                                && (brinstar_items_5.old + 8) == (brinstar_items_5.current);
+                            let crocomire_e_tank = settings.crocomire_e_tank
                                 && room_id.current == *room_id_enum.get("crocomire").unwrap()
-                                && (norfair_items1.old + 16) == (norfair_items1.current);
-                            let hiJumpETank = settings.hi_jump_e_tank
+                                && (norfair_items_1.old + 16) == (norfair_items_1.current);
+                            let hi_jump_e_tank = settings.hi_jump_e_tank
                                 && room_id.current == *room_id_enum.get("hiJumpShaft").unwrap()
-                                && (norfair_items2.old + 1) == (norfair_items2.current);
-                            let ridleyETank = settings.ridley_e_tank
+                                && (norfair_items_2.old + 1) == (norfair_items_2.current);
+                            let ridley_e_tank = settings.ridley_e_tank
                                 && room_id.current == *room_id_enum.get("ridleyETankRoom").unwrap()
-                                && (norfair_items4.old + 64) == (norfair_items4.current);
-                            let firefleaETank = settings.fireflea_e_tank
+                                && (norfair_items_4.old + 64) == (norfair_items_4.current);
+                            let fireflea_e_tank = settings.fireflea_e_tank
                                 && room_id.current
                                     == *room_id_enum.get("lowerNorfairFireflea").unwrap()
-                                && (norfair_items5.old + 1) == (norfair_items5.current);
-                            let wreckedShipETank = settings.wrecked_ship_e_tank
+                                && (norfair_items_5.old + 1) == (norfair_items_5.current);
+                            let wrecked_ship_e_tank = settings.wrecked_ship_e_tank
                                 && room_id.current
                                     == *room_id_enum.get("wreckedShipETankRoom").unwrap()
                                 && (wrecked_ship_items.old + 16) == (wrecked_ship_items.current);
-                            let tatoriETank = settings.tatori_e_tank
+                            let tatori_e_tank = settings.tatori_e_tank
                                 && room_id.current == *room_id_enum.get("mamaTurtle").unwrap()
-                                && (maridia_items1.old + 4) == (maridia_items1.current);
-                            let botwoonETank = settings.botwoon_e_tank
+                                && (maridia_items_1.old + 4) == (maridia_items_1.current);
+                            let botwoon_e_tank = settings.botwoon_e_tank
                                 && room_id.current
                                     == *room_id_enum.get("botwoonETankRoom").unwrap()
-                                && (maridia_items3.old + 1) == (maridia_items3.current);
-                            let reserveTanks = settings.reserve_tanks
+                                && (maridia_items_3.old + 1) == (maridia_items_3.current);
+                            let reserve_tanks = settings.reserve_tanks
                                 && (max_reserve.old + 100) == (max_reserve.current);
-                            let brinstarReserve = settings.brinstar_reserve
+                            let brinstar_reserve = settings.brinstar_reserve
                                 && room_id.current
                                     == *room_id_enum.get("brinstarReserveRoom").unwrap()
-                                && (brinstar_items2.old + 2) == (brinstar_items2.current);
-                            let norfairReserve = settings.norfair_reserve
+                                && (brinstar_items_2.old + 2) == (brinstar_items_2.current);
+                            let norfair_reserve = settings.norfair_reserve
                                 && room_id.current
                                     == *room_id_enum.get("norfairReserveRoom").unwrap()
-                                && (norfair_items2.old + 32) == (norfair_items2.current);
-                            let wreckedShipReserve = settings.wrecked_ship_reserve
+                                && (norfair_items_2.old + 32) == (norfair_items_2.current);
+                            let wrecked_ship_reserve = settings.wrecked_ship_reserve
                                 && room_id.current == *room_id_enum.get("bowling").unwrap()
                                 && (wrecked_ship_items.old + 2) == (wrecked_ship_items.current);
-                            let maridiaReserve = settings.maridia_reserve
+                            let maridia_reserve = settings.maridia_reserve
                                 && room_id.current == *room_id_enum.get("leftSandPit").unwrap()
-                                && (maridia_items2.old + 2) == (maridia_items2.current);
-                            let energyUpgrade = firstETank
-                                || allETanks
-                                || gauntletETank
-                                || terminatorETank
-                                || ceilingETank
-                                || etecoonsETank
-                                || waterwayETank
-                                || waveGateETank
-                                || kraidETank
-                                || crocomireETank
-                                || hiJumpETank
-                                || ridleyETank
-                                || firefleaETank
-                                || wreckedShipETank
-                                || tatoriETank
-                                || botwoonETank
-                                || reserveTanks
-                                || brinstarReserve
-                                || norfairReserve
-                                || wreckedShipReserve
-                                || maridiaReserve;
+                                && (maridia_items_2.old + 2) == (maridia_items_2.current);
+                            let energy_upgrade = first_e_tank
+                                || all_e_tanks
+                                || gauntlet_e_tank
+                                || terminator_e_tank
+                                || ceiling_e_tank
+                                || etecoons_e_tank
+                                || waterway_e_tank
+                                || wave_gate_e_tank
+                                || kraid_e_tank
+                                || crocomire_e_tank
+                                || hi_jump_e_tank
+                                || ridley_e_tank
+                                || fireflea_e_tank
+                                || wrecked_ship_e_tank
+                                || tatori_e_tank
+                                || botwoon_e_tank
+                                || reserve_tanks
+                                || brinstar_reserve
+                                || norfair_reserve
+                                || wrecked_ship_reserve
+                                || maridia_reserve;
 
                             // Miniboss room transitions
-                            let miniBossRooms = false;
-                            if (settings.mini_boss_rooms) {
-                                let ceresRidleyRoom = room_id.old
+                            let mut mini_boss_rooms = false;
+                            if settings.mini_boss_rooms {
+                                let ceres_ridley_room = room_id.old
                                     == *room_id_enum.get("flatRoom").unwrap()
                                     && room_id.current == *room_id_enum.get("ceresRidley").unwrap();
-                                let sporeSpawnRoom = room_id.old
+                                let spore_spawn_room = room_id.old
                                     == *room_id_enum.get("sporeSpawnKeyhunter").unwrap()
                                     && room_id.current == *room_id_enum.get("sporeSpawn").unwrap();
-                                let crocomireRoom = room_id.old
+                                let crocomire_room = room_id.old
                                     == *room_id_enum.get("crocomireSpeedway").unwrap()
                                     && room_id.current == *room_id_enum.get("crocomire").unwrap();
-                                let botwoonRoom = room_id.old
+                                let botwoon_room = room_id.old
                                     == *room_id_enum.get("botwoonHallway").unwrap()
                                     && room_id.current == *room_id_enum.get("botwoon").unwrap();
                                 // Allow either vanilla or GGG entry
-                                let goldenTorizoRoom = (room_id.old
+                                let golden_torizo_room = (room_id.old
                                     == *room_id_enum.get("acidStatue").unwrap()
                                     || room_id.old == *room_id_enum.get("screwAttack").unwrap())
                                     && room_id.current
                                         == *room_id_enum.get("goldenTorizo").unwrap();
-                                miniBossRooms = ceresRidleyRoom
-                                    || sporeSpawnRoom
-                                    || crocomireRoom
-                                    || botwoonRoom
-                                    || goldenTorizoRoom;
+                                mini_boss_rooms = ceres_ridley_room
+                                    || spore_spawn_room
+                                    || crocomire_room
+                                    || botwoon_room
+                                    || golden_torizo_room;
                             }
 
                             // Boss room transitions
-                            let boss_rooms = false;
-                            if (settings.boss_rooms) {
+                            let mut boss_rooms = false;
+                            if settings.boss_rooms {
                                 let kraid_room = room_id.old
                                     == *room_id_enum.get("kraidEyeDoor").unwrap()
                                     && room_id.current == *room_id_enum.get("kraid").unwrap();
@@ -1273,8 +1290,8 @@ async fn main() {
                             }
 
                             // Elevator transitions between areas
-                            let elevator_transitions = false;
-                            if (settings.elevator_transitions) {
+                            let mut elevator_transitions = false;
+                            if settings.elevator_transitions {
                                 let blue_brinstar = (room_id.old
                                     == *room_id_enum.get("elevatorToMorphBall").unwrap()
                                     && room_id.current == *room_id_enum.get("morphBall").unwrap())
@@ -1328,7 +1345,7 @@ async fn main() {
                                     == *game_state_enum.get("normalGameplay").unwrap()
                                 && game_state.current
                                     == *game_state_enum.get("startOfCeresCutscene").unwrap();
-                            let wreckedShipEntrance = settings.wrecked_ship_entrance
+                            let wrecked_ship_entrance = settings.wrecked_ship_entrance
                                 && room_id.old == *room_id_enum.get("westOcean").unwrap()
                                 && room_id.current
                                     == *room_id_enum.get("wreckedShipEntrance").unwrap();
@@ -1349,8 +1366,11 @@ async fn main() {
                                 && room_id.current == *room_id_enum.get("westOcean").unwrap();
                             let tube_broken = settings.tube_broken
                                 && room_id.current == *room_id_enum.get("glassTunnel").unwrap()
-                                && (event_flags.old & vars.eventFlagEnum["tubeBroken"]) == 0
-                                && (event_flags.current & vars.eventFlagEnum["tubeBroken"]) > 0;
+                                && (event_flags.old & event_flag_enum.get("tubeBroken").unwrap())
+                                    == 0
+                                && (event_flags.current
+                                    & event_flag_enum.get("tubeBroken").unwrap())
+                                    > 0;
                             let cac_exit = settings.cac_exit
                                 && room_id.old == *room_id_enum.get("westCactusAlley").unwrap()
                                 && room_id.current == *room_id_enum.get("butterflyRoom").unwrap();
@@ -1409,7 +1429,7 @@ async fn main() {
                             let golden_four = settings.golden_four
                                 && room_id.old == *room_id_enum.get("statuesHallway").unwrap()
                                 && room_id.current == *room_id_enum.get("statues").unwrap()
-                                && allBossesFinished;
+                                && all_bosses_finished;
                             let tourian_entrance = settings.tourian_entrance
                                 && room_id.old == *room_id_enum.get("statues").unwrap()
                                 && room_id.current == *room_id_enum.get("tourianElevator").unwrap();
@@ -1425,10 +1445,10 @@ async fn main() {
                                     || room_id.old == *room_id_enum.get("metroidFour").unwrap()
                                         && room_id.current
                                             == *room_id_enum.get("tourianHopper").unwrap());
-                            let babyMetroidRoom = settings.baby_metroid_room
+                            let baby_metroid_room = settings.baby_metroid_room
                                 && room_id.old == *room_id_enum.get("dustTorizo").unwrap()
                                 && room_id.current == *room_id_enum.get("bigBoy").unwrap();
-                            let escapeClimb = settings.escape_climb
+                            let escape_climb = settings.escape_climb
                                 && room_id.old == *room_id_enum.get("tourianEscape4").unwrap()
                                 && room_id.current == *room_id_enum.get("climb").unwrap();
                             let room_transitions = mini_boss_rooms
@@ -1581,10 +1601,10 @@ async fn main() {
                                 && game_state.current
                                     == *game_state_enum.get("endCutscene").unwrap();
 
-                            let spore_spawn_rta_finish = false;
-                            if (settings.spore_spawn_rta_finish) {
-                                if (picked_up_spore_spawn_super) {
-                                    if (igt_frames.old != igt_frames.current) {
+                            let mut spore_spawn_rta_finish = false;
+                            if settings.spore_spawn_rta_finish {
+                                if picked_up_spore_spawn_super {
+                                    if igt_frames.old != igt_frames.current {
                                         spore_spawn_rta_finish = true;
                                         picked_up_spore_spawn_super = false;
                                     }
@@ -1598,10 +1618,10 @@ async fn main() {
                                 }
                             }
 
-                            let hundred_missile_rta_finish = false;
-                            if (settings.hundred_missile_rta_finish) {
-                                if (picked_up_hundredth_missile) {
-                                    if (igt_frames.old != igt_frames.current) {
+                            let mut hundred_missile_rta_finish = false;
+                            if settings.hundred_missile_rta_finish {
+                                if picked_up_hundredth_missile {
+                                    if igt_frames.old != igt_frames.current {
                                         hundred_missile_rta_finish = true;
                                         picked_up_hundredth_missile = false;
                                     }
