@@ -683,8 +683,8 @@ async fn main() {
                             if settings.start && game_state.old == 2 && game_state.current == 0x1F {
                                 // splits = HashSet::<String>::new();
                                 //
-                                picked_up_spore_spawn_super = false;
-                                picked_up_hundredth_missile = false;
+                                // picked_up_spore_spawn_super = false;
+                                // picked_up_hundredth_missile = false;
                                 timer::start();
                             }
                         }
@@ -1635,7 +1635,7 @@ async fn main() {
                             let non_standard_category_finish =
                                 spore_spawn_rta_finish || hundred_missile_rta_finish;
 
-                            return pickup
+                            if pickup
                                 || unlock
                                 || beam
                                 || energy_upgrade
@@ -1644,7 +1644,9 @@ async fn main() {
                                 || boss_defeat
                                 || escape
                                 || takeoff
-                                || non_standard_category_finish;
+                                || non_standard_category_finish {
+                                timer::split();
+                            }
                         }
                         _ => {}
                     }
