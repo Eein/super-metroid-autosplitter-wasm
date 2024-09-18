@@ -1,4 +1,4 @@
-# cargo-features = ["trim-paths"]
+cargo-features = ["trim-paths"]
 
 [package]
 name = "super-metroid-autosplitter-wasm"
@@ -35,14 +35,14 @@ crate-type = ["cdylib"]
 
 # LTO is required on nightly, even for the dev profile, because of the rustflags.
 [profile.dev]
-# lto = true
+lto = true
 
 [profile.release]
 panic = "abort"
-# lto = true
-# codegen-units = 1
-# strip = true
-# trim-paths = true
+lto = true
+codegen-units = 1
+strip = true
+trim-paths = true
 
 [profile.release.build-override]
 opt-level = 0
