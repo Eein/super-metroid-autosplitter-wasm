@@ -1646,7 +1646,8 @@ async fn main() {
                                 || boss_defeat
                                 || escape
                                 || takeoff
-                                || non_standard_category_finish {
+                                || non_standard_category_finish
+                            {
                                 timer::split();
                             }
                         }
